@@ -19,7 +19,7 @@ P.S. jQuery is not required.
 # Usage
 
 ## Instantiate
-1. Ajax
+* Ajax
 ```
 /*
  * @param  string - ajax || socket.io
@@ -33,7 +33,7 @@ var connection = new AjaxIO('ajax', 'ajax.php', {
 });
 ```
 
-1. Socket.IO
+* Socket.IO
 ```
 /*
  * @param  string - ajax || socket.io
