@@ -44,7 +44,7 @@ var connection = new AjaxIO('ajax', 'ajax.php', {
 var connection = new AjaxIO('socket.io', 'http://127.0.0.1', 3000);
 ```
 
-## Sending
+## Sending/Receiving
 
 Example
 ```
