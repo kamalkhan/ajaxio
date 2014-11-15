@@ -1,7 +1,7 @@
 AjaxIO
 =========
 
-Seamless socket.io and ajax long polling.
+Seamless socket.io and ajax long polling fallback.
 
 AjaxIO allows seamless alteration between socket.io and ajax long polling
 while maintaining a single codebase (frontend javascript).
@@ -9,18 +9,18 @@ P.S. jQuery is not required.
 
 # Setup
 
-`
+```
 <!-- load socket.io - this should be loaded before ajaxio -->
 <script src="socket.io-1.0.6.js"></script>
 <!-- load ajaxio -->
 <script src="ajaxio.min.js"></script>
-`
+```
 
 # Usage
 
 ## Instantiate
 1. Ajax
-`
+```
 /*
  * @param  string - ajax || socket.io
  * @param  string Path to server side ajax response/script
@@ -31,10 +31,10 @@ var connection = new AjaxIO('ajax', 'ajax.php', {
     response : 'json', // default response type is json.
     timeout  : 30000   // default timeout is 30 seconds.
 });
-`
+```
 
 1. Socket.IO
-`
+```
 /*
  * @param  string - ajax || socket.io
  * @param  string Path to socket.io server/host
@@ -42,12 +42,12 @@ var connection = new AjaxIO('ajax', 'ajax.php', {
  * @return object Connection
  */
 var connection = new AjaxIO('socket.io', 'http://127.0.0.1', 3000);
-`
+```
 
 ## Sending
 
 Example
-`
+```
 // Proceed after we establish a connection.
 connection.onopen(function(){
     console.log('Connection Established');
@@ -85,7 +85,7 @@ connection.onopen(function(){
         });
     });
 });
-`
+```
 
 # Release History
 
