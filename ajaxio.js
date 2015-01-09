@@ -273,7 +273,12 @@ THE SOFTWARE.
   AjaxIOSocketIO = {
     socket: null,
     onopen: function(cb) {
-      this.socket = new io("" + this.path + ":" + this.port, {
+      var s;
+      s = this.path;
+      if (this.port) {
+        s = "" + this.path + ":" + this.port;
+      }
+      this.socket = new io(s, {
         'forceNew': true
       });
       return this.socket.on('connect', function() {
@@ -351,12 +356,12 @@ THE SOFTWARE.
         }
         AjaxIO.include(AjaxIOAjax);
       } else if (type === 'socket.io') {
-        this.port = port_args || 3000;
+        this.port = port_args || false;
         AjaxIO.include(AjaxIOSocketIO);
       } else {
         throw {
           name: 'Invalid connection type',
-          message: 'type should be either "ajax" or "socket.io"',
+          message: 'type should either be "ajax" or "socket.io"',
           toString: function() {
             return "" + this.name + ":" + this.message;
           }

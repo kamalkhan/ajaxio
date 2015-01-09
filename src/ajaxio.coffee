@@ -189,8 +189,10 @@ AjaxIOSocketIO =
     socket : null
 
     onopen : (cb) ->
-        @socket = new io "#{@path}:#{@port}",
-            'forceNew': true
+        s = @path
+        if @port then s = "#{@path}:#{@port}"
+        @socket = new io s,
+            'forceNew': yes
         @socket.on 'connect', ->
             if typeof cb is 'function' then cb()
 
@@ -233,10 +235,10 @@ class window.AjaxIO
             @args.timeout = port_args.timeout if port_args and 'timeout' of port_args
             AjaxIO.include AjaxIOAjax
         else if type is 'socket.io'
-            @port = port_args || 3000
+            @port = port_args || off
             AjaxIO.include AjaxIOSocketIO
         else
             throw
                 name     : 'Invalid connection type'
-                message  : 'type should be either "ajax" or "socket.io"'
+                message  : 'type should either be "ajax" or "socket.io"'
                 toString : -> "#{@name}:#{@message}"
