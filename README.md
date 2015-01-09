@@ -64,7 +64,7 @@ connection.onopen(function(){
         console.log('Sent: ' + JSON.stringify({foo: 'bar'}));
     });
     /*
-     * Send data/message
+     * Receive data/message
      *
      * @param string   Route. For ajax, this will be appended to the url.
      *                 Long polling for AJAX as GET request.
