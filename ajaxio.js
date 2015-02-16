@@ -1,6 +1,6 @@
 
 /*
-AjaxIO v1.0.0
+AjaxIO v1.0.2
 shout@bhittani.com
 
 Copyright (c) 2014 M. Kamal Khan <http://bhittani.com/javascript/ajaxio/>
@@ -77,7 +77,6 @@ THE SOFTWARE.
       if (window.XMLHttpRequest == null) {
         x = new ActiveXObject('Microsoft.XMLHTTP');
       }
-      x.timeout = this.args.timeout;
       x.onreadystatechange = (function(_this) {
         return function() {
           var cb, contentType, response, responseType, _i, _len, _ref, _ref1, _results;
@@ -161,6 +160,7 @@ THE SOFTWARE.
         search = a.search !== '' ? '&' : '?';
         q = q.length ? search + q.join('&') : '';
         x.open(type, "" + this.path + route + q, true);
+        x.timeout = this.args.timeout;
         try {
           x.send(null);
         } catch (_error) {
@@ -168,6 +168,7 @@ THE SOFTWARE.
         }
       } else if (type === 'POST') {
         x.open(type, "" + this.path + route, true);
+        x.timeout = this.args.timeout;
         x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         try {
           x.send(q.join('&'));

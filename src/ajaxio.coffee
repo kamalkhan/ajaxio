@@ -1,5 +1,5 @@
 ###
-AjaxIO v1.0.0
+AjaxIO v1.0.2
 shout@bhittani.com
 
 Copyright (c) 2014 M. Kamal Khan <http://bhittani.com/javascript/ajaxio/>
@@ -60,7 +60,6 @@ AjaxIOAjax =
         doPoll = true
         x = new XMLHttpRequest() if window.XMLHttpRequest?
         x = new ActiveXObject 'Microsoft.XMLHTTP' if not window.XMLHttpRequest?
-        x.timeout = @args.timeout
         x.onreadystatechange = =>
             if not @open
                 x.abort()
@@ -117,12 +116,14 @@ AjaxIOAjax =
             search = if a.search isnt '' then '&' else '?'
             q = if q.length then search + q.join '&' else ''
             x.open type, "#{@path}#{route}#{q}", true
+            x.timeout = @args.timeout
             try
                 x.send null
             catch e
                 #
         else if type is 'POST'
             x.open type, "#{@path}#{route}", true
+            x.timeout = @args.timeout
             x.setRequestHeader 'Content-type', 'application/x-www-form-urlencoded'
             try
                 x.send q.join '&'
